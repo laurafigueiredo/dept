@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actions as tickActions } from 'shared/state/tick';
-import Examples from '../components/examples';
+// import Examples from '../components/examples';
+import Home from 'components/home/Home';
+
+// components
+import PageWrapper from 'components/page-wrapper/PageWrapper';
 
 class Index extends Component {
-    static getInitialProps({ reduxStore, req }) {
-        const isServer = Boolean(req);
-        reduxStore.dispatch(tickActions.serverRenderClock(isServer));
-
-        return {};
-    }
-
     componentDidMount() {
         const { dispatch } = this.props;
         this.timer = tickActions.startClock(dispatch);
@@ -21,9 +18,18 @@ class Index extends Component {
         clearInterval(this.timer);
     }
 
+    static getInitialProps({ reduxStore, req }) {
+        const isServer = Boolean(req);
+        reduxStore.dispatch(tickActions.serverRenderClock(isServer));
+
+        return {};
+    }
+
     render() {
         return (
-            <Examples />
+            <PageWrapper>
+                <Home />
+            </PageWrapper>
         );
     }
 }

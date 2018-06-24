@@ -1,0 +1,6 @@
+
+@custom-media --layout-xxs (min-width: 30em);
+@custom-media --layout-xs (min-width: 40em);
+@custom-media --layout-sm (min-width: 48em);
+@custom-media --layout-md (min-width: 64em);
+@custom-media --layout-lg (min-width: 75em);
