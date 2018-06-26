@@ -13,7 +13,7 @@ const navLinks = [
     },
     {
         name: 'People',
-        link: '/',
+        link: '',
     },
     {
         name: 'Contact',
@@ -24,9 +24,9 @@ const navLinks = [
 const Navigation = ({ isOpen }) => (
     <nav className={ classnames('Nav', { ['isOpen']: isOpen }) }>
         {
-            navLinks.map((item, idx) => (
-                <Link key={ `navLink${idx}` } href={ item.link }>
-                    <div>{ item.name }</div>
+            navLinks.map(item => (
+                <Link href={ item.link }>
+                    <div className="Item">{ item.name }</div>
                 </Link>
             ))
         }

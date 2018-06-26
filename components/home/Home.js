@@ -15,12 +15,18 @@ import styles from './styles';
 const carouselData = [
     {
         src: '/static/porto_1.jpg',
+        title: 'Porto',
+        btnText: 'View Porto',
     },
     {
         src: '/static/porto_2.jpg',
+        title: 'Ribeira',
+        btnText: 'View Ribeira',
     },
     {
         src: '/static/porto_3.jpg',
+        title: 'Douro',
+        btnText: 'View Douro',
     },
 ];
 
@@ -33,9 +39,6 @@ class Home extends Component {
 
     render() {
         const { recentPhotos } = this.props;
-
-        // eslint-disable-next-line
-        console.log('home', recentPhotos);
 
         return (
             <div>

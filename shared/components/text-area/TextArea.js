@@ -1,22 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import classnames from 'classnames';
+import classnames from 'classnames';
 
 // Styles
 import styles from './styles';
 
 const TextArea = ({
     placeholder,
-    required,
     errorQuote,
     hasError,
+    value,
     ...otherProps
 }) => (
     <div className="TextareaWrapper">
+        {
+            (!hasError && !!value) &&
+            <span className="TextareaSuccess" />
+        }
         <textarea
-            className="Textarea"
+            className={ classnames('Textarea', { ['isSuccess']: !hasError && !!value }) }
             placeholder={ placeholder }
-            required={ required }
+            value={ value }
+            rows="4"
             { ...otherProps }
         />
         {
@@ -29,9 +34,9 @@ const TextArea = ({
 
 TextArea.propTypes = {
     placeholder: PropTypes.string,
-    required: PropTypes.bool,
     errorQuote: PropTypes.string,
     hasError: PropTypes.bool,
+    value: PropTypes.string,
 };
 
 export default TextArea;

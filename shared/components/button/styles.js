@@ -10,13 +10,12 @@ export default css`
         background-color: transparent;
     }
 
-    .Primary {
+    .Button {
         position: relative;
         padding: 1rem 5rem;
         font-size: 1.5rem;
         line-height: 1.4;
         color: var(--white);
-        background-color: var(--orange);
         z-index: 1;
 
         &::before {
@@ -28,7 +27,6 @@ export default css`
             height: 100%;
             display: block;
             border-radius: 100%;
-            background-color: var(--orange);
             z-index: -1;
         }
 
@@ -41,8 +39,19 @@ export default css`
             height: 100%;
             display: block;
             border-radius: 100%;
-            background-color: var(--orange);
             z-index: -1;
+        }
+    }
+
+    .Primary {
+        background-color: var(--orange);
+
+        &::before {
+            background-color: var(--orange);
+        }
+
+        &::after {
+            background-color: var(--orange);
         }
 
         &:hover {
@@ -56,6 +65,23 @@ export default css`
     }
 
     .Secondary {
+        background-color: var(--black);
 
+        &::before {
+            background-color: var(--black);
+        }
+
+        &::after {
+            background-color: var(--black);
+        }
+
+        &:hover {
+            background-color: var(--orange);
+
+            &::before,
+            &::after {
+                background-color: var(--orange);
+            }
+        }
     }
 `;

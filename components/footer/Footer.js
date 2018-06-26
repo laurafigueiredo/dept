@@ -1,41 +1,40 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { actions, selectors } from 'shared/state/instagram';
+import React from 'react';
 
 // Styles
 import styles from './styles';
 
-class Footer extends Component {
-    componentDidMount() {
-        const { loadRecentPhotos } = this.props;
+const social = [
+    {
+        src: '/static/facebook.svg',
+        alt: 'Facebook',
+        link: 'https://www.facebook.com/tamtamnl/',
+    },
+    {
+        src: '/static/twitter.svg',
+        alt: 'Twitter',
+        link: 'https://www.twitter.com/tamtamnl/',
+    },
+    {
+        src: '/static/instagram.svg',
+        alt: 'Instagram',
+        link: 'https://www.instagram.com/tamtamnl/',
+    },
+];
 
-        loadRecentPhotos();
-    }
+const Footer = () => (
+    <footer className="Footer">
+        {
+            social.map(item => (
+                <a className="Icon" href={ item.link } target="blank">
+                    <img
+                        src={ item.src }
+                        alt={ item.alt }
+                    />
+                </a>
+            ))
+        }
+        <style jsx>{ styles }</style>
+    </footer>
+);
 
-    render() {
-        // const { recentPhotos } = this.props;
-
-        return (
-            <footer className="Footer">
-                Hey
-                <style jsx>{ styles }</style>
-            </footer>
-        );
-    }
-}
-
-Footer.propTypes = {
-    loadRecentPhotos: PropTypes.func,
-    // recentPhotos: PropTypes.array,
-};
-
-const mapDispatchToProps = {
-    loadRecentPhotos: actions.loadRecentPhotos,
-};
-
-const mapStateToProps = state => ({
-    recentPhotos: selectors.getRecentPhotos(state),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Footer);
+export default Footer;

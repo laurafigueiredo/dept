@@ -4,14 +4,23 @@ export default css`
     @import 'styles/index';
 
     .Header {
+        position: sticky;
+        top: 0;
         z-index: 10;
         display: flex;
         background-color: var(--black);
+
+        @media (--layout-sm) {
+            padding: 2.4rem 3rem;
+        }
     }
 
     .Actions {
-        width: 100%;
+        position: relative;
         z-index: 1;
+        padding: 2rem 2rem 1.5rem 2rem;
+        width: 100%;
+        background-color: var(--black);
 
         @media (--layout-sm) {
             width: auto;
@@ -27,7 +36,17 @@ export default css`
     }
 
     .Logo {
-        justify-self: center;
+        position: absolute;
+        width: 2.2rem;
+        height: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+
+        @media (--layout-sm) {
+            width: 3.2rem;
+        }
     }
 
     .MenuIconOuter {
@@ -36,7 +55,7 @@ export default css`
 
     .MenuIconInner {
        position: relative;
-       width: 2.2rem;
+       width: 2.4rem;
        height: 2.2rem;
        display: inline-block;
        pointer-events: none;
@@ -46,8 +65,8 @@ export default css`
        position: absolute;
        top: 0;
        left: 0;
-       width: 2.2rem;
-       height: 0.1rem;
+       width: 2.4rem;
+       height: 0.3rem;
        transform: translate3d(0, 0, 0) rotate(0deg);
        background-color: var(--white);
        pointer-events: none;
@@ -58,25 +77,20 @@ export default css`
        position: absolute;
        bottom: 0;
        left: 0;
-       width: 2.2rem;
-       height: 0.1rem;
+       width: 2.4rem;
+       height: 0.3rem;
        background-color: var(--white);
        pointer-events: none;
        transition: all 0.15s ease-out 0s;
-
-       & .changeToCross {
-           width: 2rem;
-           transform: translate3d(0, -1rem, 0) rotate(-45deg);
-       }
     }
 
     .MenuMiddleLine {
        position: absolute;
        top: 50%;
        left: 0;
-       width: 2.2rem;
-       height: 0.1rem;
-       transform: translate3d(0, 0, 0) rotate(0deg);
+       width: 2.4rem;
+       height: 0.3rem;
+       transform: translate3d(0, -50%, 0) rotate(0deg);
        opacity: 1;
        background-color: var(--white);
        pointer-events: none;
@@ -84,12 +98,12 @@ export default css`
     }
 
     .changeToCross .MenuTopLine {
-       width: 2rem;
-       transform: translate3d(0, 1.1rem, 0) rotate(45deg);
+       width: 2.6rem;
+       transform: translate3d(0, 0.9rem, 0) rotate(45deg);
     }
 
     .changeToCross .MenuBottomLine {
-       width: 2rem;
+       width: 2.6rem;
        transform: translate3d(0, -1rem, 0) rotate(-45deg);
     }
 

@@ -11,7 +11,8 @@ export default css`
 
    body {
        color: #252422;
-       font-family: Barlow Regular,Helvetica Neue,Helvetica,Arial,sans-serif;
+       font-family: Lato,Barlow Regular,Helvetica Neue,Helvetica,Arial,sans-serif;
+       font-weight: 400;
        font-size: 1.6rem;
        -webkit-font-smoothing: antialiased;
        line-height: 1.4
@@ -52,21 +53,6 @@ export default css`
        border: 0;
        padding: 0;
        cursor: pointer;
-
-       &:not(.unstyled) {
-           background-color: #b7b7b7;
-           color: white;
-           font-weight: bold;
-           text-transform: uppercase;
-           font-size: 1.6rem;
-           padding: 0 2.3rem;
-           height: 4.6rem;
-           cursor: pointer;
-
-           &:hover {
-               background-color: #8a8a8a;
-           }
-       }
    }
 
    figure {

@@ -49,7 +49,7 @@ export default css`
     .InstagramSection {
         padding: 6rem 1rem;
         width: 100%;
-        background-image: url('/static/watercolor.jpg');
+        background-image: url('/static/bg.png');
         background-position: center top;
         background-size: cover;
         background-repeat: no-repeat;
@@ -63,6 +63,10 @@ export default css`
         text-transform: uppercase;
         text-align: center;
         color: var(--bluish-grey);
+
+        @media (--layout-sm) {
+            font-size: 3rem;
+        }
     }
 
     .InstagramSection-username {
@@ -72,6 +76,10 @@ export default css`
         line-height: 1.5;
         text-align: center;
         color: var(--white);
+
+        @media (--layout-sm) {
+            font-size: 3rem;
+        }
     }
 
     .InstagramSection-photoWrapper {
@@ -81,10 +89,10 @@ export default css`
 
         @media (--layout-sm) {
             display: block;
-            margin: 0 -1rem;
+            margin: 0 auto;
             max-width: 62rem;
             column-count: 2;
-            column-gap: 1rem;
+            column-gap: 2rem;
         }
 
         @media (--layout-md) {

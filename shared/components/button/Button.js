@@ -13,6 +13,7 @@ const Button = ({
     ...otherProps
 }) => {
     const theme = classnames(
+        { ['Button']: !normal },
         { ['Primary']: primary },
         { ['Secondary']: secondary },
         { ['Normal']: normal },

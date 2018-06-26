@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import Link from 'next/link';
 
 // Components
 import Button from 'shared/components/button/Button';
@@ -44,11 +45,13 @@ class Header extends Component {
                             </div>
                         </Button>
                     </div>
-                    <img
-                        src="/static/logo-stripe.png"
-                        alt="tam tam logo"
-                        className="Logo"
-                    />
+                    <Link href="/">
+                        <img
+                            src="/static/logo.svg"
+                            alt="tam tam logo"
+                            className="Logo"
+                        />
+                    </Link>
                 </div>
                 <Navigation isOpen={ menuMobileOpen } />
                 <style jsx>{ styles }</style>

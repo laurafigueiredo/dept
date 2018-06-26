@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Input from 'shared/components/input/Input';
 import TextArea from 'shared/components/text-area/TextArea';
 import Button from 'shared/components/button/Button';
+import Alert from 'shared/components/alert/Alert';
 
 // Utils
 import { hasError } from './utils';
@@ -16,6 +17,13 @@ class ContactForm extends Component {
         super();
 
         this.state = {
+            inputs: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+                textarea: '',
+            },
             error: {},
             successSubmit: false,
         };
@@ -26,11 +34,18 @@ class ContactForm extends Component {
     }
 
     handleOnChange({ target }) {
-        const { id, value } = target;
+        const { id, value, type } = target;
+        const { inputs, error } = this.state;
 
+        // sets new target input on state and error if target input isn't valid
         this.setState({
-            [id]: value,
+            inputs: {
+                ...inputs,
+                [id]: value,
+            },
             error: {
+                ...error,
+                [id]: hasError(type, value),
                 submit: false,
             },
         });
@@ -40,6 +55,7 @@ class ContactForm extends Component {
         const { id, type, value } = target;
         const { error } = this.state;
 
+        // sets error if target input isn't valid
         this.setState({
             error: {
                 ...error,
@@ -49,21 +65,26 @@ class ContactForm extends Component {
     }
 
     handleOnSubmit(event) {
-        const { error } = this.state;
+        const { inputs } = this.state;
 
         event.preventDefault();
 
-        if (error.firstName ||
-            error.lastName ||
-            error.email ||
-            error.textarea) {
+        if (!(!!inputs.firstName &&
+            !!inputs.lastName &&
+            !!inputs.email &&
+            !!inputs.textarea)) {
+            // sets error if required inputs are not valid
             this.setState({
                 error: {
-                    ...error,
+                    firstName: hasError('text', inputs.firstName),
+                    lastName: hasError('text', inputs.lastName),
+                    email: hasError('email', inputs.email),
+                    textarea: hasError('textarea', inputs.textarea),
                     submit: true,
                 },
             });
         } else {
+            // sets success if all required inputs are valid
             this.setState({
                 successSubmit: true,
             });
@@ -71,81 +92,89 @@ class ContactForm extends Component {
     }
 
     render() {
-        const { error, successSubmit } = this.state;
+        const { error, inputs, successSubmit } = this.state;
 
         return (
             <section className="ContactSection">
-                <h1 className="Title">We would love to hear from you</h1>
-                {
-                    !successSubmit &&
-                    <React.Fragment>
-                        {
-                            error.submit &&
-                            <p>Please complete the form and try again.</p>
-                        }
-                        <form onSubmit={ this.handleOnSubmit }>
-                            <div className="FormInner">
-                                <Input
-                                    type="text"
-                                    placeholder="First name"
-                                    name="firstName"
-                                    id="firstName"
-                                    hasError={ !!error.firstName }
-                                    errorQuote="We need your first name."
-                                    required
-                                    onBlur={ this.handleOnBlur }
-                                    onChange={ this.handleOnChange }
-                                />
-                                <Input
-                                    type="text"
-                                    placeholder="Last name"
-                                    name="lastName"
-                                    id="lastName"
-                                    hasError={ !!error.lastName }
-                                    errorQuote="We need your last name."
-                                    required
-                                    onBlur={ this.handleOnBlur }
-                                    onChange={ this.handleOnChange }
-                                />
-                                <Input
-                                    type="email"
-                                    placeholder="Your e-mail address"
-                                    name="email"
-                                    id="email"
-                                    hasError={ !!error.email }
-                                    errorQuote="Please use a valid e-mail address."
-                                    required
-                                    onBlur={ this.handleOnBlur }
-                                    onChange={ this.handleOnChange }
-                                />
-                                <Input
-                                    type="tel"
-                                    placeholder="Your phone number (optional)"
-                                    name="phone"
-                                    id="phone"
-                                />
-                                <TextArea
-                                    type="textarea"
-                                    placeholder="Your message..."
-                                    name="textarea"
-                                    id="textarea"
-                                    hasError={ !!error.textarea }
-                                    errorQuote="Sorry, your message can't be empty."
-                                    required
-                                    onBlur={ this.handleOnBlur }
-                                    onChange={ this.handleOnChange }
-                                />
-                            </div>
-                            <div className="Button">
-                                <Button primary type="submit">Send</Button>
-                            </div>
-                        </form>
-                    </React.Fragment>
-                }
-                {
-                    successSubmit &&
-                    <p>Thank you, we have received your message.</p>
-                }
+                <div className="ContentWrapper">
+                    <h1 className="Title">We would love to hear from you</h1>
+                    {
+                        !successSubmit &&
+                        <React.Fragment>
+                            {
+                                error.submit &&
+                                <Alert type="error">
+                                    Please complete the form and try again.
+                                </Alert>
+                            }
+                            <form onSubmit={ this.handleOnSubmit }>
+                                <div className="FormInner">
+                                    <Input
+                                        type="text"
+                                        placeholder="First name"
+                                        name="firstName"
+                                        id="firstName"
+                                        value={ inputs.firstName }
+                                        hasError={ !!error.firstName }
+                                        errorQuote="We need your first name."
+                                        onBlur={ this.handleOnBlur }
+                                        onChange={ this.handleOnChange }
+                                    />
+                                    <Input
+                                        type="text"
+                                        placeholder="Last name"
+                                        name="lastName"
+                                        id="lastName"
+                                        value={ inputs.lastName }
+                                        hasError={ !!error.lastName }
+                                        errorQuote="We need your last name."
+                                        onBlur={ this.handleOnBlur }
+                                        onChange={ this.handleOnChange }
+                                    />
+                                    <Input
+                                        type="email"
+                                        placeholder="Your e-mail address"
+                                        name="email"
+                                        id="email"
+                                        value={ inputs.email }
+                                        hasError={ !!error.email }
+                                        errorQuote="Please use a valid e-mail address."
+                                        onBlur={ this.handleOnBlur }
+                                        onChange={ this.handleOnChange }
+                                    />
+                                    <Input
+                                        type="tel"
+                                        placeholder="Your phone number (optional)"
+                                        name="phone"
+                                        id="phone"
+                                        value={ inputs.phone }
+                                        onChange={ this.handleOnChange }
+                                    />
+                                    <TextArea
+                                        type="textarea"
+                                        placeholder="Your message..."
+                                        name="textarea"
+                                        id="textarea"
+                                        value={ inputs.textarea }
+                                        hasError={ !!error.textarea }
+                                        errorQuote="Sorry, your message can't be empty."
+                                        onBlur={ this.handleOnBlur }
+                                        onChange={ this.handleOnChange }
+                                    />
+                                </div>
+                                <div className="Button">
+                                    <Button primary type="submit">Send</Button>
+                                </div>
+                            </form>
+                        </React.Fragment>
+                    }
+                    {
+                        successSubmit &&
+                        <Alert type="success">
+                            Thank you, we have received your message.
+                        </Alert>
+                    }
+                </div>
                 <style jsx>{ styles }</style>
             </section>
         );

@@ -9,7 +9,6 @@ export default css`
         max-width: 30rem;
 
         @media (--layout-sm) {
-            margin: 0 1rem 2rem;
             break-inside: avoid;
         }
     }

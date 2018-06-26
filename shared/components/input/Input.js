@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import classnames from 'classnames';
 
 // Styles
 import styles from './styles';
@@ -8,17 +7,21 @@ import styles from './styles';
 const Input = ({
     type,
     placeholder,
-    required,
     errorQuote,
     hasError,
+    value,
     ...otherProps
 }) => (
     <div className="InputWrapper">
+        {
+            (!hasError && !!value) &&
+            <span className="InputSuccess" />
+        }
         <input
             type={ type }
             className="Input"
             placeholder={ placeholder }
-            required={ required }
+            value={ value }
             { ...otherProps }
         />
         {
@@ -32,9 +35,9 @@ const Input = ({
 Input.propTypes = {
     type: PropTypes.string,
     placeholder: PropTypes.string,
-    required: PropTypes.bool,
     errorQuote: PropTypes.string,
     hasError: PropTypes.bool,
+    value: PropTypes.string,
 };
 
 export default Input;
