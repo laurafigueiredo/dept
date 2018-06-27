@@ -6,9 +6,9 @@ export default css`
    .ContactSection {
        padding: 6rem 0;
        width: 100%;
-       height: calc(100vh - 6rem);
        display: flex;
        flex-direction: column;
+       flex: 1 0 auto;
        align-items: center;
        background-image: url('/static/bg.png');
        background-position: center top;

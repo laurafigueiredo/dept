@@ -53,6 +53,14 @@ export default css`
         background-position: center top;
         background-size: cover;
         background-repeat: no-repeat;
+
+        @media (--layout-sm) {
+            padding: 8rem 0;
+        }
+
+        @media (--layout-xl) {
+            padding: 10rem 0;
+        }
     }
 
     .InstagramSection-title {
@@ -78,7 +86,12 @@ export default css`
         color: var(--white);
 
         @media (--layout-sm) {
+            margin-bottom: 4rem;
             font-size: 3rem;
+        }
+
+        @media (--layout-xl) {
+            margin-bottom: 5rem;
         }
     }
 

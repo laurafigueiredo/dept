@@ -12,7 +12,8 @@ export default css`
 
     .Button {
         position: relative;
-        padding: 1rem 5rem;
+        padding: 1rem 0;
+        width: 13rem;
         font-size: 1.5rem;
         line-height: 1.4;
         color: var(--white);

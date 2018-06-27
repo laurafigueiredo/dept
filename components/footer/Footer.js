@@ -1,22 +1,20 @@
 import React from 'react';
+import classnames from 'classnames';
 
 // Styles
 import styles from './styles';
 
 const social = [
     {
-        src: '/static/facebook.svg',
-        alt: 'Facebook',
+        name: 'Facebook',
         link: 'https://www.facebook.com/tamtamnl/',
     },
     {
-        src: '/static/twitter.svg',
-        alt: 'Twitter',
+        name: 'Twitter',
         link: 'https://www.twitter.com/tamtamnl/',
     },
     {
-        src: '/static/instagram.svg',
-        alt: 'Instagram',
+        name: 'Instagram',
         link: 'https://www.instagram.com/tamtamnl/',
     },
 ];
@@ -25,12 +23,7 @@ const Footer = () => (
     <footer className="Footer">
         {
             social.map(item => (
-                <a className="Icon" href={ item.link } target="blank">
-                    <img
-                        src={ item.src }
-                        alt={ item.alt }
-                    />
-                </a>
+                <a className={ classnames('Icon', `Icon${item.name}`) } href={ item.link } target="blank" />
             ))
         }
         <style jsx>{ styles }</style>

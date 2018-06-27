@@ -18,4 +18,28 @@ export default css`
             padding-right: 0;
         }
     }
+
+    .IconFacebook {
+        content: url('/static/facebook.svg');
+
+        &:hover {
+            content: url('/static/facebook_.svg');
+        }
+    }
+
+    .IconTwitter {
+        content: url('/static/twitter.svg');
+
+        &:hover {
+            content: url('/static/twitter_.svg');
+        }
+    }
+
+    .IconInstagram {
+        content: url('/static/instagram.svg');
+
+        &:hover {
+            content: url('/static/instagram_.svg');
+        }
+    }
 `;
